@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './styles/App.css';
+
 import Wordle from './components/Wordle';
 
 function App() {
