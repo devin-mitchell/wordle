@@ -1,5 +1,3 @@
-import '../index.css'
-
 export type Guess = { char: string, color: string}[] | undefined
 
 type Props = {
