@@ -1,33 +1,61 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 type Letter = {
-  key: string
-}
+  key: string;
+};
 
 type Props = {
-  usedKeys: {[key: string]: string} 
-}
+  usedKeys: { [key: string]: string };
+};
 
-export default function Keypad({usedKeys}: Props) {
-  const [letters, setLetters] = useState<Letter[] | null>(null)
+const LETTERS = [
+  { key: "a" },
+  { key: "b" },
+  { key: "c" },
+  { key: "d" },
+  { key: "e" },
+  { key: "f" },
+  { key: "g" },
+  { key: "h" },
+  { key: "i" },
+  { key: "j" },
+  { key: "k" },
+  { key: "l" },
+  { key: "m" },
+  { key: "n" },
+  { key: "o" },
+  { key: "p" },
+  { key: "q" },
+  { key: "r" },
+  { key: "s" },
+  { key: "t" },
+  { key: "u" },
+  { key: "v" },
+  { key: "w" },
+  { key: "x" },
+  { key: "y" },
+  { key: "z" },
+];
+
+export default function Keypad({ usedKeys }: Props) {
+  const [letters, setLetters] = useState<Letter[] | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/letters")
-      .then(res => res.json())
-      .then(json => {
-        setLetters(json)
-      })
-  }, [setLetters])
+    setLetters(LETTERS);
+  }, [setLetters]);
 
   return (
     <div className="keypad">
-      {letters !== null && letters.map(letter => {
-        const color = usedKeys[letter.key]
+      {letters !== null &&
+        letters.map((letter) => {
+          const color = usedKeys[letter.key];
 
-        return (
-          <div key={letter.key} className={color}>{letter.key}</div>
-        )
-      })}
+          return (
+            <div key={letter.key} className={color}>
+              {letter.key}
+            </div>
+          );
+        })}
     </div>
-  )
+  );
 }
